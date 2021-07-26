@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 
@@ -10,28 +11,49 @@ const Login = () => {
   const handleCLick = () => {
     history.push('/register');
   };
-  const handleSignin = () => {
-    history.push('/auth/github');
+  const handleChange = (e) => {
+    setSignin({
+      ...signin,
+      [e.target.name]: e.target.value,
+    });
   };
+  // const handleSignin = () => {};
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const { data } = await axios.post('http://localhost:3001/signin', signin);
+    console.log(data);
+    if (data.message === 'success') {
+      history.push('/auth/github');
+    }
   };
   return (
     <>
       <div className='container'>
         <h2>LOGIN</h2>
         <form action='' onSubmit={handleSubmit}>
-          <input type='text' placeholder='insert username' className='email' />
+          <input
+            type='text'
+            name='username'
+            placeholder='insert username'
+            className='email'
+            onChange={handleChange}
+          />
           <br />
-          <input type='text' placeholder='insert password' className='pwd' />
+          <input
+            type='text'
+            name='password'
+            placeholder='insert password'
+            className='pwd'
+            onChange={handleChange}
+          />
         </form>
         <br />
         <div>
           <button className='loggin' onClick={handleCLick}>
             <span className='span-l'>register</span>
           </button>
-          <button className='signin' onClick={handleSignin}>
+          <button className='signin' onClick={handleSubmit}>
             <span>sign in</span>
           </button>
         </div>

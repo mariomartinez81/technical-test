@@ -4,10 +4,7 @@ import axios from 'axios';
 const Home = () => {
   useEffect(() => {
     async function github() {
-      const response = await axios.get(
-        `http://localhost:3001/auth/github/callback`
-      );
-      return <response></response>;
+      await axios.get(`http://localhost:3001/auth/github`);
     }
     github();
   }, []);
