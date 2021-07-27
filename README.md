@@ -4,7 +4,7 @@
   <img height="200" src="https://lh3.googleusercontent.com/proxy/KN_JI8WoJD-Y2UZ5Df3UpHUZpqQMRTKmXx86Oaj1xWiENALHYCQ0wNEw1MFM_cBB4NI8Qm4Z6ZAq5NrPyAEmv_MIskqSS9vMiUCtw1GrnfPtcfZEAyP_W5U" />
 </p>
 
-Look for your favorite Video games, add to favorites, search your favorite games and create new ones; share your pasion with fans around the world.
+See all your updated repositories, and have fun listing your favorites
 
 ## Frontend
 
