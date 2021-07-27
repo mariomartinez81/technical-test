@@ -18,6 +18,13 @@ const Profile = () => {
     dataRender();
   }, []);
 
+  const handleClick = async () => {
+    try {
+      await window.open('http://localhost:3001/logout');
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       {repos.length > 1 ? (
@@ -29,6 +36,11 @@ const Profile = () => {
               className='imgProfile'
             />
             <h1>Hello {username} </h1>
+            <button className='logout-btn'>
+              <a href='http://localhost:3001/logout' className='logout'>
+                Logout
+              </a>
+            </button>
           </div>
 
           <div className='container-repos'>

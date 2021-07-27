@@ -22,12 +22,27 @@
 .profileGitHub {
   display: flex;
   flex-direction: column;
+  align-items: center;
   .imgProfile {
     margin-top: 5rem;
     border-radius: 100%;
     width: 10rem;
     align-self: center;
     box-shadow: 6px 6px 8px grey;
+  }
+  .logout-btn {
+    border-radius: 1000px;
+    filter: saturate(80%);
+    &:hover {
+      transform: scaleX(1.1);
+      transition: transform 0.3s ease-in-out;
+      filter: saturate(180%);
+    }
+  }
+  .logout {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
   }
 }
 
