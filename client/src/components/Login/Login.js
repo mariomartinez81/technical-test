@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+
 import './Login.scss';
 
 const Login = () => {
@@ -21,12 +21,19 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post('http://localhost:3001/signin', signin);
-    console.log(data);
-    if (data.message === 'success') {
-      history.push('/auth/github');
+    try {
+      const { data } = await axios.post('http://localhost:3001/signin', signin);
+      if (data.message === 'success') {
+        window.open('http://localhost:3001/auth/github');
+      }
+    } catch (error) {
+      console.log(error);
+      if (!signin.username || !signin.password)
+        return alert('compleate all fields');
+      alert('user or password wrong');
     }
   };
+
   return (
     <>
       <div className='container'>
@@ -41,7 +48,7 @@ const Login = () => {
           />
           <br />
           <input
-            type='text'
+            type='password'
             name='password'
             placeholder='insert password'
             className='pwd'

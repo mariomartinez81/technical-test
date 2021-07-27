@@ -9,6 +9,8 @@
 body {
   font-family: 'Open Sans', sans-serif;
   background: #e2e2e2;
+  background-image: url('https://img.freepik.com/foto-gratis/manchas-violetas-rojas-cerca-lila-aguamarina-pinturas-sobre-papel-blanco_23-2148015665.jpg?size=626&ext=jpg');
+  background-size: cover;
 }
 
 svg {
@@ -73,18 +75,17 @@ input {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 20px;
   font-family: 'Open Sans', sans-serif;
-  text-transform: uppercase;
   color: #858585;
   font-weight: lighter;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  margin-bottom: 1.75rem;
 }
 
 .link {
   text-decoration: none;
   display: inline-block;
   margin: 27px 28%;
-  text-transform: uppercase;
   color: #858585;
   font-weight: lighter;
   -webkit-transition: 0.5s;
@@ -97,7 +98,7 @@ button {
   float: left;
   width: 250px;
   height: 60px;
-  margin-top: 56px;
+  // margin-top: 56px;
   border: none;
   font-family: 'Open Sans', sans-serif;
   text-transform: uppercase;

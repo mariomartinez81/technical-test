@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-import { Link } from 'react-router-dom';
 import './Register.scss';
 
 const Register = () => {
@@ -16,11 +15,19 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = async () => {
-    await axios.post('http://localhost:3001/signup', signup);
-  };
-  const handleClick = () => {
-    history.push('/');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:3001/signup', signup);
+      console.log(res);
+      history.push('/');
+      alert('Successful  register');
+    } catch (error) {
+      console.log(error);
+      if (!signup.username || !signup.email || !signup.password)
+        return alert('compleate all fields');
+      if (error) alert('The user exist');
+    }
   };
 
   return (
@@ -46,7 +53,7 @@ const Register = () => {
             />
             <br />
             <input
-              type='text'
+              type='password'
               name='password'
               placeholder='insert password'
               className='pwd-r'
@@ -54,7 +61,7 @@ const Register = () => {
             />
           </form>
           <br />
-          <button className='register' onClick={handleClick}>
+          <button className='register' onClick={handleSubmit}>
             <span className='span'>Login</span>
           </button>
         </div>

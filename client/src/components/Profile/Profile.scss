@@ -1,0 +1,79 @@
+.container-repos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  justify-items: center;
+}
+.all-repos {
+  border: solid 1px #a0a0a0a4;
+  border-radius: 5px;
+  margin: 3rem 2rem;
+  padding: 1rem;
+  width: fit-content;
+  box-shadow: 4px 4px 6px #000000bd;
+  background-color: #fff;
+}
+.data-repo {
+  width: fit-content;
+  margin-left: 3rem;
+  font-family: 'Sf Mono';
+}
+
+.profileGitHub {
+  display: flex;
+  flex-direction: column;
+  .imgProfile {
+    margin-top: 5rem;
+    border-radius: 100%;
+    width: 10rem;
+    align-self: center;
+    box-shadow: 6px 6px 8px grey;
+  }
+}
+
+.fav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .start-fav {
+    border-radius: 1000px;
+    width: 2.8rem;
+    height: 1.5rem;
+    align-content: center;
+    background-color: #673ab7;
+    filter: saturate(80%);
+  }
+  &:hover {
+    filter: saturate(250%);
+    transform: scale(1.04, 1.04);
+    transition: transform 0.4s;
+  }
+}
+
+.await-add {
+  display: flex;
+  flex-direction: column;
+  .img-add {
+    width: 20rem;
+    align-self: center;
+  }
+}
+
+h1 {
+  text-align: center;
+  margin: 1rem 0rem;
+  padding: 1rem;
+}
+h3 {
+  text-align: center;
+  margin: 1rem 0rem;
+  padding: 1rem;
+}
+
+figure {
+  margin-left: 0.5rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
