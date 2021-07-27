@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Github Repos View - Single App(monorepo)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="right">
+  <img height="200" src="https://lh3.googleusercontent.com/proxy/KN_JI8WoJD-Y2UZ5Df3UpHUZpqQMRTKmXx86Oaj1xWiENALHYCQ0wNEw1MFM_cBB4NI8Qm4Z6ZAq5NrPyAEmv_MIskqSS9vMiUCtw1GrnfPtcfZEAyP_W5U" />
+</p>
 
-## Available Scripts
+Look for your favorite Video games, add to favorites, search your favorite games and create new ones; share your pasion with fans around the world.
 
-In the project directory, you can run:
+## Frontend
 
-### `yarn start`
+### **Tech stack**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- JavaScript
+- React
+- React router
+- Scss for component styles
+- PropTypes
+- SweetAlert 2.0
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Framework:** Create-React-App.
 
-### `yarn test`
+### **Scripts**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `npm install` for dependencies
+- `npm start` for development environment
+- `npm run build` to create production build
 
-### `yarn build`
+### **Features**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Main GuitHub Repositories' screen with all repositories that you have.
+  - **Register** registers a user and saves it in the database, in addition to checking if the user already exists.
+  - **Login:** Login con username y password con autenticaion desde la base de datos
+  - **Authenticated GitHub:** once the user has entered the App, they must authenticate in github to continue within the App and be able to consult the github API
+  - **Render all repositories:**Renders all the repositories that the logged in user currently has on their GitHub
+  - **Add Repositories to favorites:** tThe user can see all their repositories and add the ones they want to the favorites list
+- Form fully opened to the community for consulting yours repos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## **Backend**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Tech stack**
 
-### `yarn eject`
+- JavaScript
+- NodeJS
+- Express
+- Pasport
+- Bcrypt
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### **Scripts**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `npm install` for dependencies
+- `npm start` for development environment with nodemon
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### **Features**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- API implemented with **REST** architecture
+- API tested and documented with Insonmia
+- Routes layer and Services layer implemented (only the services are able to interact with the DB controllers)
 
-## Learn More
+### **Endpoints**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Genre:
+  - `/singup` POST create a new user an verify if exist in data base
+- Video game:
+  - `/signin` POST performs the verification and authenticates the user for their login
+  - `/allusers` GET fetch all users from the database
+  - `/auth/github` GET oauth with GitHub
+  - `/logout` allows the user to exit the application
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## **Database**
 
-### Code Splitting
+### **Tech stack**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- MongoDB
+- Mongoose
 
-### Analyzing the Bundle Size
+### **Features**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 1 Models implemented -> Users
+- Controllers layer implemented (only the controllers are able to interact directly with the MongoDB DB & Mongoose)
 
-### Making a Progressive Web App
+## **License**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+MIT.
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+_The app uses GitHub API the use._
