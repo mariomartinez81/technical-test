@@ -3,10 +3,13 @@ const router = require('./routes/index');
 const morgan = require('morgan');
 const cors = require('cors');
 const passport = require('passport');
-var GitHubStrategy = require('passport-github').Strategy;
+var methodOverride = require('method-override');
+var GitHubStrategy = require('passport-github2').Strategy;
 const session = require('express-session');
-const axios = require('axios').default;
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
+const { GITHUB_ID, GITHUB_SECRET, SECRET } = process.env;
+const Users = require('./models/User');
 
 const app = express();
 
@@ -18,10 +21,11 @@ app.set('port', process.env.PORT || 3001);
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride());
+app.use(express.urlencoded({ extended: true }));
 //
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3001'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header(
     'Access-Control-Allow-Headers',
@@ -30,11 +34,11 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
-//
 
+//session github
 app.use(
   session({
-    secret: process.env.SECRET || 'secret',
+    secret: SECRET || 'secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -60,16 +64,11 @@ passport.deserializeUser(function (id, cb) {
 passport.use(
   new GitHubStrategy(
     {
-      clientID: process.env.GITHUB_ID || '71a0190eb439aa4438fd',
-      clientSecret:
-        process.env.GITHUB_SECRET || '5c851b90a23bf0774ae5f1ecc3451f4c63fac20c',
+      clientID: GITHUB_ID || '71a0190eb439aa4438fd',
+      clientSecret: GITHUB_SECRET || '5c851b90a23bf0774ae5f1ecc3451f4c63fac20c',
       callbackURL: 'http://localhost:3001/auth/github/callback',
     },
     function (accessToken, refreshToken, profile, cb) {
-      //   User.findOrCreate({ githubId: profile.id }, function (err, user) {
-      //     return cb(err, user);
-      //   });
-      console.log(profile);
       cb(null, profile);
     }
   )
@@ -79,29 +78,19 @@ passport.use(
 app.use(router);
 
 // Github routes
-app.get('/auth/github', passport.authenticate('github'));
-// app.get('login/oauth/authorize', passport.authenticate('github'));
+app.get(
+  '/auth/github',
+  passport.authenticate('github', { scope: ['user:email'] })
+);
 
 app.get(
   '/auth/github/callback',
   passport.authenticate('github', { session: false }),
-  // passport.authenticate('github', { failureRedirect: '/login' }),
   async function (req, res) {
     req.session.userId = req.user.id;
-    // Successful authentication, redirect home.
-    // try {
-    //   const userdata = await axios.get(
-    //     `https://api.github.com/users/${userdata.login}/repos`
-    //   );
-    //   if (userdata) return res.status(200).json(userdata);
-    //   return res.send({ message: 'inicialize' });
-    // } catch (error) {
-    //   console.log(error);
-    // }
 
-    res.redirect('/');
+    res.redirect(`http://localhost:3000/profile/${req.user.username}`);
   }
 );
 
 module.exports = app;
-//https://github.com/settings/applications/1673892

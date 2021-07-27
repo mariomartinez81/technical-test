@@ -2,7 +2,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = {
-  jwtSecret: process.env.JWT_SECRET || 'secrettoken',
   MONGO_DATABASE: process.env.MONGO_DATABASE || 'usersReposDB',
   MONGO_USER: process.env.MONGO_USER || 'admin',
   MONGO_PASSWORD: process.env.MONGO_PASSWORD || 'admin',

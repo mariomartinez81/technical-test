@@ -2,6 +2,8 @@ const Users = require('../models/User');
 
 const signup = async (req, res) => {
   const { username, email, password } = req.body;
+  if (!username || !password || !email)
+    return res.status(400).send({ message: 'Please. fill all inputs' });
 
   const userFound = await Users.findOne({ username: username });
   if (userFound) return res.status(400).json({ message: 'The user exist' });
@@ -13,7 +15,7 @@ const signup = async (req, res) => {
   });
   const saveUser = await newUser.save();
 
-  return res.status(201).json(saveUser);
+  return res.status(201).json({ message: 'Success register', saveUser });
 };
 
 const signin = async (req, res) => {
