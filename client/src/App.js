@@ -15,4 +15,3 @@ function App() {
 }
 
 export default App;
-//`https://api.github.com/users/${username}/repos`

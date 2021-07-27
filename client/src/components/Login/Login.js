@@ -17,7 +17,6 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
-  // const handleSignin = () => {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
